@@ -13,8 +13,19 @@ class User(models.Model):
 
 
 class Item(models.Model):
+    TYPE_CHOICES = [
+        (0, 'IT'),
+        (1, '건강'),
+        (2, '음식'),
+        (3, '엔터테인먼트'),
+        (4, '사회'),
+        (5, '디자인 및 패션'),
+        (6, '농업'),
+        (7, '기타'),
+    ]
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=20)
+    type = models.PositiveSmallIntegerField(choices=TYPE_CHOICES, default=0)
     description = models.TextField()
     price = models.IntegerField()
     target_num = models.IntegerField()
@@ -43,9 +54,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'{self.user} {self.item} {self.content}'
-
-class Category(models.Model):
-    category = models.CharField(max_length=10)
-
-    def __str__(self):
-        return f'{self.category}'
