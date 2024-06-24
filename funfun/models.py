@@ -43,3 +43,9 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'{self.user} {self.item} {self.content}'
+
+class Category(models.Model):
+    category = models.CharField(max_length=10)
+
+    def __str__(self):
+        return f'{self.category}'
